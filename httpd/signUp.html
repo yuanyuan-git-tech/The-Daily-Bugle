@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Login Or Register</title>
+    <meta charset='utf-8'>
+    <link rel="stylesheet" href="css/login.css">
+</head>
+
+<body>
+<div id="signUpForm">
+    <h1>Sign up</h1>
+    <form>
+        <!--        the <label> is associated with the <input> element with the id "username" using the for attribute. When the user clicks on the "Username:" label, the associated input field with the id "username" will receive focus, allowing the user to start typing their username without having to click directly on the input element. This improves the user experience, especially for those who use screen readers or have mobility-->
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <br><br>
+        <label for="Role">Role:</label>
+        <select id="Role" name="role">
+            <option value="reader">Reader</option>
+            <option value="author">Author</option>
+        </select>
+        <br><br>
+        <input type="submit" value="Sign up" id="registerButton" onclick="return register(event)">
+        <br><br>
+        Already have an account? <a href="signIn.html">Sign in</a>
+    </form>
+    <p id="statusMessage"></p>
+</div>
+
+</body>
+<script src="controls/authentication.js"></script>
+</html>

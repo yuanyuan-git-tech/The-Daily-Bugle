@@ -1,0 +1,20 @@
+version: '3'
+services:
+  httpd:
+    image: httpd:latest
+    ports:
+      - "80:80"
+    volumes:
+      - /opt/homebrew/etc/httpd/httpd.conf:/usr/local/apache2/conf
+
+  node:
+    build: ./node
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./node:/app
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo:latest

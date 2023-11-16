@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Author</title>
+    <link rel="stylesheet" type="text/css" href="css/author.css">
+</head>
+<body onload="return onLoad('author')">
+<div id="authorPage">
+    <h1>Author</h1>
+    <div id="userName"></div>
+    <div id="signOut">Sign Out</div>
+
+    <form enctype="multipart/form-data">
+
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title" required><br>
+
+        <label for="body">Body</label><br>
+        <input type="text" id="body" name="body" required><br>
+
+        <label for="teaser">Teaser:</label><br>
+        <input type="text" id="teaser" name="teaser" required><br>
+
+        <label for="imageFile">Upload an image:</label>
+        <input type="file" name="imageFile" id="imageFile"><br>
+
+        <label for="categories">Categories:</label><br>
+        <select id="categories" name="categories">
+            <option value="tech">Tech</option>
+            <option value="well-being">WellBeing</option>
+            <option value="politics">Politics</option>
+            <option value="business">Business</option>
+            <option value="opinion">Opinion</option>
+        </select>
+        <br><br>
+
+        <input type="submit" value="Post" onclick="return postArticle(event)">
+    </form>
+    <div id="statusMessage"></div>
+</div>
+
+</body>
+<script src="controls/author.js"></script>
+</html>

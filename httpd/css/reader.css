@@ -1,0 +1,107 @@
+/* styles.css */
+
+/* Page container */
+#readerPage {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Headline styling */
+.headline {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#userName {
+    font-size: 1em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+}
+
+/* Body content styling */
+.body {
+    margin-bottom: 20px;
+}
+
+/* Comment input styling */
+label[for="comment"] {
+    font-weight: bold;
+    margin-top: 15px;
+    display: block;
+}
+
+#comment {
+    width: calc(100% - 12px);
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#postCommentBtn {
+    padding: 8px 15px;
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+#postCommentBtn:hover {
+    background-color: #0056b3;
+}
+
+/* Other Comments styling */
+#otherComments {
+    margin-top: 20px;
+}
+
+.commentItem {
+    list-style: none;
+    border-bottom: 1px solid #ccc;
+    padding: 5px 0;
+}
+
+#signOut {
+    padding: 8px 15px;
+    background-color: #dc3545;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease-in-out;
+    position: absolute;
+    top: 18px; /* Adjust as needed */
+    right: 20px; /* Adjust as needed */
+}
+
+#signOut:hover {
+    background-color: #c82333;
+}
+
+#nextArticleBtn {
+    padding: 8px 15px;
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease-in-out;
+    margin-top: 20px;
+}
+
+#nextArticleBtn:hover {
+    background-color: #0056b3;
+}

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>The Daily Bugle</title>
+    <meta charset='utf-8'>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body onload="fetchAndListStoryWithoutLogin()">
+<h1>The Daily Bugle</h1>
+<div id="mainPage">
+    <a id="loginButton" href="signIn.html">Sign in or Register</a>
+    <div id="storiesContainer"></div>
+    <button id="nextArticleBtn">Next</button>
+    <div id="adsContainer">
+        <span id="adsCloseButton">&times;</span>
+        <div id="adsTitle">AD</div>
+        <p id="adsDescription">Check out our amazing product!</p>
+        <img id="adsImage" src="" alt="Product Image">
+    </div>
+</div>
+</body>
+<script src="controls/index.js"></script>
+</html>

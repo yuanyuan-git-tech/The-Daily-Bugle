@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reader</title>
+    <link rel="stylesheet" type="text/css" href="css/reader.css">
+</head>
+<body onload="return onLoad('reader')">
+<div id="readerPage">
+    <h1>Reader</h1>
+    <div id="userName"></div>
+    <div id="signOut">Sign Out</div>
+
+    <div id="headline" class="headline">headline</div>
+    <div id="body" class="body">body</div>
+
+    <form>
+        <label for="comment">Your Comment</label><br>
+        <input type="text" id="comment" name="comment" required><br>
+        <input id="postCommentBtn" onclick="return postComment()" type="submit" name="Post">
+    </form>
+
+    <div id="otherComments">Other Comments</div>
+    <button id="nextArticleBtn">Next Article</button>
+    <div id="statusMessage"></div>
+</div>
+</body>
+<script src="controls/reader.js"></script>
+</html>
