@@ -1,21 +1,22 @@
-require('dotenv').config({path: 'node/.env'});
+require('dotenv').config({path: '.env'});
 const express = require("express");
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
 
 // MongoDB database to store user information.
 const {MongoClient} = require("mongodb");
-const mongoURI = "mongodb://localhost:27017";
+const mongoURI = "mongodb://mongodb:27017";
 const client = new MongoClient(mongoURI);
 
 const app = express();
 app.use(express.json());
 app.use(cors({
-    origin: 'http://localhost:8080',
+    origin: '*',
 }));
 
 const port = 3001;
-app.listen(port, () => console.log(`Server is running on port ${port}`));
+const host = '0.0.0.0';
+app.listen(port, host, () => console.log(`Server running on http://${host}:${port}`));
 
 // Register a new user
 app.post('/register', async (request, response) => {

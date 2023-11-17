@@ -1,12 +1,14 @@
 version: '3'
 services:
   apache:
-    image: httpd:latest
+    build:
+      context: ./httpd
     ports:
       - "80:80"
-    volumes:
-      - ./httpd.conf:/usr/local/apache2/conf
-#      - /opt/homebrew/etc/httpd/httpd.conf:/usr/local/apache2/conf
+    depends_on:
+      - auth_node
+      - article_node
+      - ads_node
 
   auth_node:
     build:
@@ -22,7 +24,7 @@ services:
   article_node:
     build:
       context: ./node
-      dockerfile: AuthDockerfile
+      dockerfile: ArticleDockerfile
     ports:
       - "3000:3000"
     volumes:
@@ -33,7 +35,7 @@ services:
   ads_node:
     build:
       context: ./node
-      dockerfile: AuthDockerfile
+      dockerfile: AdsDockerfile
     ports:
       - "3002:3002"
     volumes:

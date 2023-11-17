@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const {MongoClient} = require("mongodb");
-const mongoURI = "mongodb://localhost:27017";
+const mongoURI = "mongodb://mongodb:27017";
 const client = new MongoClient(mongoURI);
 const {ObjectId} = require('mongodb');
 const multer = require('multer');
@@ -9,15 +9,14 @@ const path = require('path');
 
 
 const port = 3000;
+const host = '0.0.0.0';
 const app = express();
 app.use(express.json());
 app.use(cors({
-    origin: 'http://localhost:8080',
+    origin: '*',
 }));
 
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-});
+app.listen(port, host, () => console.log(`Server running on http://${host}:${port}`));
 
 app.get("/", async (request, response) => {
     try {

@@ -1,9 +1,9 @@
 const endpoint = {
     auth: "http://localhost:3001/author",
-    article: "http://localhost:3000/addStory",
-    uploadImg: 'http://localhost:3000/upload',
-    update: 'http://localhost:3000/updateStory',
-    signOut: 'http://localhost:3001/logout'
+    signOut: 'http://localhost:3001/logout',
+    article: "http://localhost:3001/addStory",
+    uploadImg: 'http://article_node:3000/upload',
+    update: 'http://article_node:3000/updateStory'
 };
 
 const token = localStorage.getItem('accessToken');

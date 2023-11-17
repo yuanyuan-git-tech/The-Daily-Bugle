@@ -4,20 +4,22 @@ const path = require('path');
 
 const {MongoClient} = require("mongodb");
 const {request} = require("express");
-const mongoURI = "mongodb://localhost:27017";
+const mongoURI = "mongodb://mongodb:27017";
 const client = new MongoClient(mongoURI);
 
 const app = express();
 app.use(express.json());
 app.use(cors({
-    origin: 'http://localhost:8080',
+    origin: '*',
 }));
 
 const port = 3002;
-app.listen(port, () => console.log(`Server is running on port ${port}`));
+const host = '0.0.0.0'
+app.listen(port, host, () => console.log(`Server running on http://${host}:${port}`));
 
 app.get('/', async (req, res) => {
     try {
+        console.log("AAA")
         await client.connect();
         const collection = client.db('dailybugle').collection('ads');
         const results = await collection.find().toArray();
