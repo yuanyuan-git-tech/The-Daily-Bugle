@@ -2,7 +2,8 @@ const endpoint = {
     article: "http://localhost:3000",
     image: "http://localhost:3000/image",
     adsImage: "http://localhost:3002/adsImages/",
-    ads: "http://localhost:3002"
+    ads: "http://localhost:3002",
+    adsEvent: "http://localhost:3002/adsEvent"
 };
 
 const nextArticleBtn = document.getElementById('nextArticleBtn');
@@ -10,24 +11,31 @@ const adsCloseBtn = document.getElementById('adsCloseButton');
 const adsContainer = document.getElementById('adsContainer');
 const adsImageContainer = document.getElementById("adsImage");
 let articleIndex = 0;
-let articles = [];
+let articles;
 let adsImagesIndex = 0;
 let adsImages;
 let shouldIncrementIndex = true;
+const user = "anon";
 
 nextArticleBtn.onclick = () => {
     makeStoryPageWithoutLogin();
 }
 adsCloseBtn.onclick = () => {
     adsContainer.style.display = 'none';
+    shouldIncrementIndex = false;
     setTimeout(() => {
         adsContainer.style.display = 'block';
         shouldIncrementIndex = true;
     }, 5000); // Reappear after 5 seconds
 };
 
+adsImageContainer.onclick = async () => {
+    await postAdsEvent("interaction");
+}
+
 setInterval(changeImage, 5000);
-function changeImage() {
+
+async function changeImage() {
     if (!shouldIncrementIndex) {
         return;
     }
@@ -35,9 +43,26 @@ function changeImage() {
     if (adsImagesIndex >= adsImages.length) {
         adsImagesIndex = 0;
     }
+
     adsImageContainer.src = endpoint.adsImage + adsImages[adsImagesIndex].image;
+    await postAdsEvent("impression");
 }
 
+async function postAdsEvent(event) {
+    try {
+        const dataToSend = {event: event, ads_id: adsImages[adsImagesIndex]._id, user: user};
+        console.log(dataToSend);
+        const res = await fetch(endpoint.adsEvent, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(dataToSend)
+        })
+    } catch (error) {
+        console.log(error.message);
+    }
+}
 
 function fetchAndListStoryWithoutLogin() {
     const response = fetch(endpoint.article);

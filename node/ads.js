@@ -32,9 +32,18 @@ app.get('/', async (req, res) => {
 
 app.post('/adsEvent', async (req, res) => {
     try {
-        const {} = request.body;
+        let dataToSend = req.body;
+        dataToSend.userIp = req.ip;
+        dataToSend.userAgent = req.get('User-Agent');
+        dataToSend.date = new Date();
         await client.connect();
-        const adsEvent = client.db('dailybugle').collection('adsEvent');
+        const collection = client.db('dailybugle').collection('adsEvent');
+        const result = await collection.insertOne(dataToSend);
+        if (result.insertedId) {
+            return res.status(201).json({message: 'Post Ads Event successfully'});
+        } else {
+            return res.status(500).json({error: 'Can not add ads event  into database'});
+        }
     } catch (error) {
         console.log(error);
     } finally {

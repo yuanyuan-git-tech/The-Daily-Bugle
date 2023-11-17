@@ -90,9 +90,7 @@ app.get('/author', isAuthenticated, (request, response) => {
     response.sendStatus(200);
 });
 
-
 function generateAccessToken(payload) {
-    console.log(process.env.ACCESS_TOKEN_SECRET);
     return jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '1h'});
 }
 

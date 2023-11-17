@@ -2,7 +2,10 @@ const endpoint = {
     auth: "http://localhost:3001/reader",
     article: "http://localhost:3000",
     addComment: "http://localhost:3000/addComment",
-    signOut: 'http://localhost:3001/logout'
+    signOut: 'http://localhost:3001/logout',
+    adsImage: "http://localhost:3002/adsImages/",
+    ads: "http://localhost:3002",
+    adsEvent: "http://localhost:3002/adsEvent"
 };
 
 const token = localStorage.getItem('accessToken');
@@ -21,9 +24,59 @@ const comment = document.getElementById('comment');
 const nextArticleBtn = document.getElementById("nextArticleBtn");
 const statusMessage = document.getElementById("statusMessage");
 const signOutBtn = document.getElementById("signOut");
+const adsCloseBtn = document.getElementById('adsCloseButton');
+const adsContainer = document.getElementById('adsContainer');
+const adsImageContainer = document.getElementById("adsImage");
+let adsImagesIndex = 0;
+let adsImages;
+let shouldIncrementIndex = true;
+
 
 signOutBtn.onclick = signOut;
 nextArticleBtn.onclick = getNextArticle;
+adsCloseBtn.onclick = () => {
+    adsContainer.style.display = 'none';
+    shouldIncrementIndex = false;
+    setTimeout(() => {
+        adsContainer.style.display = 'block';
+        shouldIncrementIndex = true;
+    }, 5000); // Reappear after 5 seconds
+};
+adsImageContainer.onclick = async () => {
+    await postAdsEvent("interaction");
+}
+
+setInterval(changeImage, 5000);
+
+async function changeImage() {
+    if (!shouldIncrementIndex) {
+        return;
+    }
+    adsImagesIndex++;
+    if (adsImagesIndex >= adsImages.length) {
+        adsImagesIndex = 0;
+    }
+    adsImageContainer.src = endpoint.adsImage + adsImages[adsImagesIndex].image;
+    await postAdsEvent("impression");
+}
+
+async function postAdsEvent(event) {
+    try {
+        const dataToSend = {event: event, ads_id: adsImages[adsImagesIndex]._id, user: user};
+        console.log(dataToSend);
+        const res = await fetch(endpoint.adsEvent, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(dataToSend)
+        })
+    } catch (error) {
+
+    }
+}
+
+
 
 async function onLoad(requiredRole) {
     if (!await isAuthenticated(requiredRole)) {
@@ -36,6 +89,15 @@ async function onLoad(requiredRole) {
     userDiv.innerHTML = user;
     await updateAllArticles();
     await makePage();
+    const adsImageResponse = fetch(endpoint.ads);
+    adsImageResponse.then(res => res.json())
+        .then(res => {
+            adsImages = res;
+            if (!adsImages || adsImages.length === 0) {
+                return;
+            }
+            adsImageContainer.src = endpoint.adsImage + adsImages[adsImagesIndex].image;
+        });
 }
 
 function makePage() {
