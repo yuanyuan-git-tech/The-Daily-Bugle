@@ -19,7 +19,6 @@ app.listen(port, host, () => console.log(`Server running on http://${host}:${por
 
 app.get('/', async (req, res) => {
     try {
-        console.log("AAA")
         await client.connect();
         const collection = client.db('dailybugle').collection('ads');
         const results = await collection.find().toArray();

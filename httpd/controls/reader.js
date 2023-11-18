@@ -1,11 +1,11 @@
 const endpoint = {
-    auth: "http://localhost:3001/reader",
-    article: "http://localhost:3000",
-    addComment: "http://localhost:3000/addComment",
-    signOut: 'http://localhost:3001/logout',
-    adsImage: "http://localhost:3002/adsImages/",
-    ads: "http://localhost:3002",
-    adsEvent: "http://localhost:3002/adsEvent"
+    auth: "/auth_node/reader",
+    article: "/article_node",
+    addComment: "/article_node/addComment",
+    signOut: '/auth_node/logout',
+    adsImage: "/ads_node/adsImages/",
+    ads: "/ads_node",
+    adsEvent: "/ads_node/adsEvent"
 };
 
 const token = localStorage.getItem('accessToken');

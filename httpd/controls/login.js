@@ -1,6 +1,6 @@
 const endpoint = {
-    login: "http://localhost:3001/login",
-    register: "http://localhost:3001/register"
+    login: "/auth_node/login",
+    register: "/auth_node/register"
 };
 
 const username = document.getElementById('username');

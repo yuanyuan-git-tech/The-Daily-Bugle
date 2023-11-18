@@ -1,9 +1,9 @@
 const endpoint = {
-    article: "http://localhost:3000",
-    image: "http://localhost:3000/image",
-    adsImage: "http://localhost:3002/adsImages/",
-    ads: "http://localhost:3002",
-    adsEvent: "http://localhost:3002/adsEvent"
+    article: "/article_node",
+    image: "/article_node/image",
+    adsImage: "/ads_node/adsImages/",
+    ads: "/ads_node",
+    adsEvent: "/ads_node/adsEvent"
 };
 
 const nextArticleBtn = document.getElementById('nextArticleBtn');
